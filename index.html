@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Micro-Habit Roulette</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div id="app">
+    <header>
+      <h1 id="app-title">Micro-Habit Roulette</h1>
+      <button id="theme-toggle" aria-label="Toggle theme">
+        <span class="icon-light">☀️</span>
+        <span class="icon-dark" hidden>🌙</span>
+      </button>
+    </header>
+
+    <main>
+      <!-- Screen 1: Roulette -->
+      <section id="screen-roulette" class="screen active">
+        <div class="roulette-container">
+          <div id="roulette-empty" class="roulette-empty" hidden>
+            <div class="empty-icon">📋</div>
+            <p>No habits yet!<br>Add some in the Habits tab.</p>
+          </div>
+
+          <div id="roulette-idle" class="roulette-circle-wrapper">
+            <button id="spin-btn" class="roulette-circle spin-gradient" aria-label="Spin the roulette">
+              <span class="spin-icon">🎲</span>
+              <span class="spin-label">SPIN</span>
+            </button>
+          </div>
+
+          <div id="roulette-spinning" class="roulette-circle-wrapper" hidden>
+            <div class="roulette-circle spin-gradient">
+              <div class="spinner"></div>
+              <p id="cycling-text" class="cycling-text"></p>
+            </div>
+          </div>
+
+          <div id="roulette-active" class="roulette-circle-wrapper" hidden>
+            <div id="active-circle" class="roulette-circle active-circle">
+              <p id="active-habit-name" class="active-habit-name"></p>
+              <p id="active-timer" class="active-timer"></p>
+              <div id="active-complete" class="active-complete" hidden>
+                <span class="check-icon">✓</span>
+                <p>Complete!</p>
+              </div>
+            </div>
+          </div>
+
+          <div id="action-buttons" class="action-buttons" hidden>
+            <button id="skip-btn" class="btn btn-outline">↷ Skip</button>
+            <button id="done-btn" class="btn btn-primary">✓ Done</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Screen 2: Habits -->
+      <section id="screen-habits" class="screen">
+        <div class="habits-container">
+          <div class="habits-header">
+            <h2>Your Habits</h2>
+            <span id="habit-count" class="habit-count"></span>
+          </div>
+
+          <div id="add-habit-form" class="add-habit-form" hidden>
+            <div class="input-group">
+              <input type="text" id="habit-input" placeholder="e.g. Do 10 jumping jacks" maxlength="100">
+              <button id="save-habit-btn" class="btn btn-primary btn-sm">Save</button>
+              <button id="cancel-habit-btn" class="btn btn-ghost btn-sm">Cancel</button>
+            </div>
+          </div>
+
+          <button id="show-add-btn" class="btn btn-primary btn-block">
+            + Add Habit
+          </button>
+
+          <ul id="habits-list" class="habits-list"></ul>
+
+          <div id="habits-empty" class="habits-empty" hidden>
+            <div class="empty-icon">📋</div>
+            <p>No habits yet.<br>Tap "Add Habit" to get started!</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Screen 3: Stats -->
+      <section id="screen-stats" class="screen">
+        <div class="stats-container">
+          <h2>Your Stats</h2>
+          <p class="stats-subtitle">Keep the momentum going!</p>
+
+          <div class="stats-cards">
+            <div class="stat-card">
+              <div class="stat-icon stat-icon-streak">🔥</div>
+              <div class="stat-info">
+                <span class="stat-label">Current Daily Streak</span>
+                <div class="stat-value-row">
+                  <span id="streak-value" class="stat-value">0</span>
+                  <span id="streak-unit" class="stat-unit">days</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="stat-card">
+              <div class="stat-icon stat-icon-total">✅</div>
+              <div class="stat-info">
+                <span class="stat-label">Total Habits Completed</span>
+                <div class="stat-value-row">
+                  <span id="total-value" class="stat-value">0</span>
+                  <span id="total-unit" class="stat-unit">habits</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <p class="stats-footer">Every micro-habit counts.<br>Keep showing up!</p>
+        </div>
+      </section>
+    </main>
+
+    <nav id="bottom-nav" class="bottom-nav">
+      <button class="nav-item active" data-screen="roulette">
+        <span class="nav-icon">🎰</span>
+        <span class="nav-label">Roulette</span>
+      </button>
+      <button class="nav-item" data-screen="habits">
+        <span class="nav-icon">📋</span>
+        <span class="nav-label">Habits</span>
+      </button>
+      <button class="nav-item" data-screen="stats">
+        <span class="nav-icon">📊</span>
+        <span class="nav-label">Stats</span>
+      </button>
+    </nav>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
